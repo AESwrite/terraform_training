@@ -88,35 +88,17 @@ resource "aws_route_table_association" "terraformtraining-private-1-a" {
 }
 
 
-# # elastic ip
-# resource "aws_eip" "nat_gw_eip" {
-#   vpc = true
-# }
 
 
+resource "aws_security_group" "allow-SSH" {
+    name = "allow SSH"
+    vpc_id = "${aws_vpc.t_project_vpc.id}"
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+  
+}
 
-
-# #NAT
-# resource "aws_nat_gateway" "gw" {
-#   allocation_id = "${aws_eip.nat_gw_eip.id}"
-#   subnet_id     = "${aws_subnet.public_subnet_for_bastion_host.id}"
-# }
-
-# #route table for nat, managing internet connection
-# resource "aws_route_table" "my_vpc_route_tb" {
-#     vpc_id = "${aws_vpc.t_project_vpc.id}"
-
-#     route {
-#         cidr_block = "0.0.0.0/0"
-#         gateway_id = "${aws_eip.nat_gw_eip.id}"
-#     }
-
-#     tags {
-#         Name = "Main Route Table for nat bastion subnet"
-#     }
-# }
-
-# resource "aws_route_table_association" "my_vpc_route_tb" {
-#     subnet_id = "${aws_subnet.public_subnet_for_bastion_host.id}"
-#     route_table_id = "${aws_route_table.my_vpc_route_tb.id}"
-# }
