@@ -72,7 +72,7 @@ depends_on = ["aws_internet_gateway.internet_for_my_VPC"]
 }
 
 # Terraform Training VPC for NAT
-resource "aws_route_table" "rt_FOR_NAT" {
+resource "aws_route_table" "TF-private_route-table" {
     vpc_id = "${aws_vpc.terraform_VPC.id}"
     route {
         cidr_block = "${var.internet_cidr}"
@@ -80,13 +80,13 @@ resource "aws_route_table" "rt_FOR_NAT" {
     }
 
     tags {
-        Name = "table for nat"
+        Name = "TF-private_route-table-1"
     }
 }
 # Terraform Training private routes
-resource "aws_route_table_association" "for_pivate_subnet" {
+resource "aws_route_table_association" "TF-private" {
     subnet_id = "${aws_subnet.private_subnet_for_3hosts.id}"
-    route_table_id = "${aws_route_table.rt_FOR_NAT.id}"
+    route_table_id = "${aws_route_table.TF-private_route-table.id}"
 }
 
 

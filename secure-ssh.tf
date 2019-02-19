@@ -1,5 +1,5 @@
  resource "aws_security_group" "SSH" {
- name = "allow-all-sg"
+ name = "allow-SSH"
  vpc_id = "${aws_vpc.terraform_VPC.id}"
  ingress {
     cidr_blocks = [
