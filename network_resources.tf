@@ -12,7 +12,7 @@ resource "aws_vpc" "terraform_VPC" {
 resource "aws_subnet" "public_subnet_BASTION" {
   cidr_block = "${var.public_subnet_cidr}"
   vpc_id = "${aws_vpc.terraform_VPC.id}"
-  availability_zone = "eu-west-2a"
+  availability_zone = "us-east-2a"
   map_public_ip_on_launch = true #so it could use internet
   tags {
     Name = "public_subnet_BASTION"
@@ -23,7 +23,7 @@ resource "aws_subnet" "public_subnet_BASTION" {
 resource "aws_subnet" "private_subnet_for_3hosts" {
   cidr_block = "${var.private_subnet_cidr}"
   vpc_id = "${aws_vpc.terraform_VPC.id}"
-  availability_zone = "eu-west-2a"
+  availability_zone = "us-east-2a"
   map_public_ip_on_launch = false
   tags {
     Name = "private_subnet_for_3_hosts"

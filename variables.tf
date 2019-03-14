@@ -5,7 +5,7 @@
 
 variable "aws_region" {
     description = "EC2 Region for the VPC"
-    default = "eu-west-1"
+    default = "us-east-2"
 }
 
 
@@ -30,17 +30,17 @@ variable "internet_cidr" {
 }
 
 variable "amis" {
-    default = "ami-0664a710233d7c148"
+    default = "ami-08b08d6d"
   
 }
 
 variable "inst_type" {
-    default = "t2.micro"
+    default = "t2.small"
   
 }
 
 variable "keyname" {
-    default = "terraform_test"
+    default = "vm"
   
 }
 
